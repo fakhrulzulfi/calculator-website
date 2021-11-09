@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <div class="output">
+                <p id="output-display">0</p>
+            </div>
+            <div class="row-1">
+                <button onclick="clearOutput()">C</button>
+                <button onclick="backSpace()">CE</button>
+                <button onclick="addToDisplay('%')">%</button>
+                <button onclick="addToDisplay('/')">/</button>
+            </div>
+            <div class="row-2">
+                <button onclick="addToDisplay('7')">7</button>
+                <button onclick="addToDisplay('8')">8</button>
+                <button onclick="addToDisplay('9')">9</button>
+                <button onclick="addToDisplay('x')">X</button>
+            </div>
+            <div class="row-3">
+                <button onclick="addToDisplay('4')">4</button>
+                <button onclick="addToDisplay('5')">5</button>
+                <button onclick="addToDisplay('6')">6</button>
+                <button onclick="addToDisplay('-')">-</button>
+            </div>
+            <div class="row-4">
+                <button onclick="addToDisplay('1')">1</button>
+                <button onclick="addToDisplay('2')">2</button>
+                <button onclick="addToDisplay('3')">3</button>
+                <button onclick="addToDisplay('+')">+</button>
+            </div>
+            <div class="row-5">
+                <button onclick="addToDisplay('0')">0</button>
+                <button onclick="addToDisplay('.')">.</button>
+                <button class="total" onclick="finish()">=</button>
+            </div>
+        </div>
+
+        <div class="history" id="history">
+            
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
