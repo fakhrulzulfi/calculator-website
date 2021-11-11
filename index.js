@@ -10,15 +10,20 @@ const backSpace = () => {
 
 const percent = () => {
     const number = document.getElementById('output-display').innerHTML;
+    
+    try {
+        if( number == '0' || operatorIsValid() ) throw Error('Masukin dulu beb angkanya :(')
 
-    const percentage = number / 100;
+        const percentage = number / 100;
 
-    const history = addToHistory({getNumber: number, result: percentage});
+        const history = addToHistory({getNumber: number + '%', result: percentage});
 
-    console.log(history);
-
-    document.getElementById('history').innerHTML += history
-    document.getElementById('output-display').innerHTML = percentage;
+        document.getElementById('history').innerHTML += history
+        document.getElementById('output-display').innerHTML = percentage;
+    } catch (error) {
+        alert(error.message);
+        document.getElementById('output-display').innerHTML = '0';
+    }
 }
 
 const addToDisplay = (item) => {
@@ -43,10 +48,8 @@ const removeZero = () => {
 const finish = () => {
     try {
         const getNumber = document.getElementById('output-display').innerHTML;
-        
-        const listOperator = ['+', 'x', '/', '%'];
 
-        if( getNumber === '0' || listOperator.includes(getNumber[0])) throw Error('Masukin dulu beb angkanya :(');
+        if( getNumber === '0' || operatorIsValid() ) throw Error('Masukin dulu beb angkanya :(');
         
         const formattedNumber = getNumber.replace('x', '*');
 
@@ -62,6 +65,19 @@ const finish = () => {
     }
 };
 
+const operatorIsValid = () => {
+    const getNumber = document.getElementById('output-display').innerHTML;
+
+    const listOperator = ['+', 'x', '/', '%'];
+
+    if( listOperator.includes(getNumber[0]) ) {
+        return true;
+    } else  {
+        return false;
+    }
+
+
+}
 
 const addToHistory = ({getNumber, result}) => {
     return `<p class="number">${getNumber}</p><p class="result">${result}</p><hr>`;
