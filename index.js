@@ -9,8 +9,16 @@ const backSpace = () => {
 };
 
 const addToDisplay = (item) => {
-    removeZero();
-    document.getElementById('output-display').innerHTML += item;
+    try {
+        if( document.getElementById('output-display').innerHTML == '0' && item == '.' ) {
+            document.getElementById('output-display').innerHTML += item;    
+        } else {
+            removeZero();
+            document.getElementById('output-display').innerHTML += item;
+        }
+    } catch (error) {
+        
+    }
 };
 
 // menghapus angka NOL sebelum menjalankan operasi
@@ -20,18 +28,28 @@ const removeZero = () => {
 };
 
 const finish = () => {
-    const getNumber = document.getElementById('output-display').innerHTML;
-    const formattedNumber = getNumber.replace('x', '*');
-    const result = eval(formattedNumber);
+    try {
+        const getNumber = document.getElementById('output-display').innerHTML;
+        
+        const listOperator = ['+', 'x', '/', '%'];
 
-    const addToData = {
-        number: getNumber,
-        result
-    };
+        if( getNumber === '0' || listOperator.includes(getNumber[0])) throw Error('Masukin dulu beb angkanya :(');
+        
+        const formattedNumber = getNumber.replace('x', '*');
 
-    const history = `<p class="number">${addToData.number}</p><p class="result">${addToData.result}</p><hr>`;
+        const result = eval(formattedNumber); //--> EVAL IS EVIL NGUEHEHEHEHE
 
-    document.getElementById('history').innerHTML += history;
+        const addToData = {
+            number: getNumber,
+            result
+        };
 
-    document.getElementById('output-display').innerHTML = result;
+        const history = `<p class="number">${addToData.number}</p><p class="result">${addToData.result}</p><hr>`;
+
+        document.getElementById('history').innerHTML += history;
+        document.getElementById('output-display').innerHTML = result;
+    } catch (error) {
+        alert(error.message);
+        document.getElementById('output-display').innerHTML = '0';
+    }
 };
