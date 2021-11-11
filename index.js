@@ -8,6 +8,19 @@ const backSpace = () => {
     select.length <= 1 ? document.getElementById('output-display').innerHTML = '0' : document.getElementById('output-display').innerHTML = select.substring(0, select.length - 1);
 };
 
+const percent = () => {
+    const number = document.getElementById('output-display').innerHTML;
+
+    const percentage = number / 100;
+
+    const history = addToHistory({getNumber: number, result: percentage});
+
+    console.log(history);
+
+    document.getElementById('history').innerHTML += history
+    document.getElementById('output-display').innerHTML = percentage;
+}
+
 const addToDisplay = (item) => {
     try {
         if( document.getElementById('output-display').innerHTML == '0' && item == '.' ) {
@@ -37,14 +50,9 @@ const finish = () => {
         
         const formattedNumber = getNumber.replace('x', '*');
 
-        const result = eval(formattedNumber); //--> EVAL IS EVIL NGUEHEHEHEHE
+        const result = eval(formattedNumber);       //--> EVAL IS EVIL NGUEHEHEHEHE
 
-        const addToData = {
-            number: getNumber,
-            result
-        };
-
-        const history = `<p class="number">${addToData.number}</p><p class="result">${addToData.result}</p><hr>`;
+        const history = addToHistory({getNumber, result});
 
         document.getElementById('history').innerHTML += history;
         document.getElementById('output-display').innerHTML = result;
@@ -52,4 +60,9 @@ const finish = () => {
         alert(error.message);
         document.getElementById('output-display').innerHTML = '0';
     }
+};
+
+
+const addToHistory = ({getNumber, result}) => {
+    return `<p class="number">${getNumber}</p><p class="result">${result}</p><hr>`;
 };
