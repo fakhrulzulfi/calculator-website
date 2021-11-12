@@ -27,10 +27,11 @@ const percent = () => {
             text: `${error.message}`,
             icon: "error",
             button: "OK",
+            timer: 3000,
           });
         document.getElementById('output-display').innerHTML = '0';
     }
-}
+};
 
 const addToDisplay = (item) => {
     try {
@@ -72,6 +73,7 @@ const finish = () => {
             text: `${error.message}`,
             icon: "error",
             button: "OK",
+            timer: 3000
           });
         document.getElementById('output-display').innerHTML = '0';
     }
@@ -87,7 +89,7 @@ const operatorIsValid = () => {
     listOperator.includes(getNumber[0]) ? check = true : check = false ;
 
     return check;
-}
+};
 
 const addToHistory = ({getNumber, result}) => {
     return `<p class="number">${getNumber}</p><p class="result">${result}</p><hr>`;
