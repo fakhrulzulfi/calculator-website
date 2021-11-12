@@ -21,7 +21,13 @@ const percent = () => {
         document.getElementById('history').innerHTML += history
         document.getElementById('output-display').innerHTML = percentage;
     } catch (error) {
-        alert(error.message);
+        // alert(error.message);
+        swal({
+            title: "Wah ada error!",
+            text: `${error.message}`,
+            icon: "error",
+            button: "OK",
+          });
         document.getElementById('output-display').innerHTML = '0';
     }
 }
@@ -49,7 +55,7 @@ const finish = () => {
     try {
         const getNumber = document.getElementById('output-display').innerHTML;
 
-        if( getNumber === '0' || operatorIsValid() ) throw Error('Masukin dulu beb angkanya :(');
+        if( getNumber === '0' || operatorIsValid() ) throw Error('Di cek lagi beb angkanya :(');
         
         const formattedNumber = getNumber.replace('x', '*');
 
@@ -60,23 +66,27 @@ const finish = () => {
         document.getElementById('history').innerHTML += history;
         document.getElementById('output-display').innerHTML = result;
     } catch (error) {
-        alert(error.message);
+        // alert(error.message);
+        swal({
+            title: "Wah ada error!",
+            text: `${error.message}`,
+            icon: "error",
+            button: "OK",
+          });
         document.getElementById('output-display').innerHTML = '0';
     }
 };
 
 const operatorIsValid = () => {
+    let check;  
+    
     const getNumber = document.getElementById('output-display').innerHTML;
 
     const listOperator = ['+', 'x', '/', '%'];
 
-    if( listOperator.includes(getNumber[0]) ) {
-        return true;
-    } else  {
-        return false;
-    }
+    listOperator.includes(getNumber[0]) ? check = true : check = false ;
 
-
+    return check;
 }
 
 const addToHistory = ({getNumber, result}) => {
