@@ -24,7 +24,7 @@ const percent = () => {
         // alert(error.message);
         swal({
             title: "Wah ada error!",
-            text: `${error.message}`,
+            text: error.message.includes('beb') ? error.message : "Syntaxnya ada yang error beb!",
             icon: "error",
             button: "OK",
             timer: 3000,
@@ -70,7 +70,7 @@ const finish = () => {
         // alert(error.message);
         swal({
             title: "Wah ada error!",
-            text: `${error.message}`,
+            text: error.message.includes('beb') ? error.message : "Syntaxnya ada yang error beb!",
             icon: "error",
             button: "OK",
             timer: 3000
