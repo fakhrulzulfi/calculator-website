@@ -85,3 +85,9 @@ button:active {
 hr {
     margin: 20px 0;
 }
+
+@media only screen and (max-width: 600px) {
+    .history {
+        display: none;
+    }
+}
